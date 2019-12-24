@@ -1,0 +1,4 @@
+
+functions:
+  test:
+    handler: src/fake.default

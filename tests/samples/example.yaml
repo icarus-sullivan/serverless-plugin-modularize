@@ -1,0 +1,9 @@
+
+resources:
+  Resources:
+    ExampleBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: TestBucket
+        AccessControl: PublicRead
+

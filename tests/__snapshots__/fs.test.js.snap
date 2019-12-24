@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils/fs loads js file 1`] = `
+Object {
+  "custom": Object {
+    "exportedJsFile": true,
+  },
+}
+`;
+
+exports[`utils/fs loads json file 1`] = `
+Object {
+  "provider": Object {
+    "environment": Object {
+      "FOO": "BAR",
+    },
+  },
+}
+`;
+
+exports[`utils/fs loads yaml file 1`] = `
+Object {
+  "resources": Object {
+    "Resources": Object {
+      "ExampleBucket": Object {
+        "Properties": Object {
+          "AccessControl": "PublicRead",
+          "BucketName": "TestBucket",
+        },
+        "Type": "AWS::S3::Bucket",
+      },
+    },
+  },
+}
+`;
+
+exports[`utils/fs loads yml file 1`] = `
+Object {
+  "functions": Object {
+    "test": Object {
+      "handler": "src/fake.default",
+    },
+  },
+}
+`;

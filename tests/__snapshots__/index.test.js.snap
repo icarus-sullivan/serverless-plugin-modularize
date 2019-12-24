@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modularize ignored when missing globs 1`] = `
+Object {
+  "cli": Object {
+    "consoleLog": [MockFunction],
+  },
+  "service": Object {
+    "custom": Object {
+      "foo": "bar",
+    },
+    "functions": Object {},
+    "plugins": Array [],
+    "provider": Object {},
+    "resources": Object {},
+  },
+}
+`;
+
+exports[`Modularize merges external files 1`] = `
+Object {
+  "cli": Object {
+    "consoleLog": [MockFunction],
+  },
+  "service": Object {
+    "custom": Object {
+      "modularize": Object {
+        "glob": "**/example.json",
+      },
+    },
+    "functions": Object {},
+    "plugins": Array [],
+    "provider": Object {
+      "environment": Object {
+        "FOO": "BAR",
+      },
+    },
+    "resources": Object {},
+  },
+}
+`;

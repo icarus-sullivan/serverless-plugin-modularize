@@ -1,0 +1,4 @@
+
+functions:
+  hello:
+    handler: src/hello/index.hello

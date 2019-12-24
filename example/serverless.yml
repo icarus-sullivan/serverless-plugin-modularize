@@ -1,0 +1,13 @@
+
+service: modular-example
+
+plugins:
+  - serverless-plugin-modularize
+
+custom:
+  modularize:
+    glob: 'src/**/*.module.yml'
+
+provider:
+  name: aws
+  runtime: nodejs10.x

@@ -1,0 +1,10 @@
+{
+  "name": "modular-example",
+  "version": "1.0.0",
+  "description": "Shows how to use the modularize plugin for serverless",
+  "scripts": {},
+  "devDependencies": {
+    "serverless": "^1.60.4",
+    "serverless-plugin-modularize": "../"
+  }
+}

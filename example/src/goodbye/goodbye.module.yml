@@ -1,0 +1,4 @@
+
+functions:
+  goodbye:
+    handler: src/goodbye/index.goodbye
