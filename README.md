@@ -1,6 +1,6 @@
 
 # serverless-plugin-modularize
-In large projects, modularizing serverless definitions can help clarify and keep code clean. This plugin seeks to isolate modular code but merge it into the larger serverless context during deployment and local usage.
+Allows modularized serverless definitions to be merged into a root project. Making decoupled code more config driven and encapsulated. 
 
 ![Downloads][link-download] ![Version][link-version] ![License][link-license]
 
