@@ -4,7 +4,7 @@ In large projects, modularizing serverless definitions can help clarify and keep
 
 ![Downloads][link-download] ![Version][link-version] ![License][link-license]
 
-![header](https://raw.githubusercontent.com/icarus-sullivan/serverless-plugin-modularize/master/blocks.png)
+![header](https://raw.githubusercontent.com/icarus-sullivan/serverless-plugin-modularize/master/blocks_sm.png)
 
 # Installation
 
