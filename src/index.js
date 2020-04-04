@@ -70,7 +70,7 @@ class Modularize {
     };
 
     const customMerge = (key) => {
-      if (key.indexOf(':')) {
+      if (key.indexOf(':') > 0) {
         return (a, b) => a;
       }
     };

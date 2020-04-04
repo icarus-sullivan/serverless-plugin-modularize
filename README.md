@@ -123,7 +123,7 @@ A simple example can be found [here][example], showing how two lambda resource d
 
 # Changelog
 
-**1.0.2**
+**1.0.3**
 - Adding check for Fn:Get keys
 
 [link-download]: https://img.shields.io/npm/dt/serverless-plugin-modularize
