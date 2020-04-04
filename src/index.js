@@ -3,11 +3,13 @@ const deepmerge = require('deepmerge');
 const glob = require('glob');
 const { resolve } = require('./utils/fs');
 
-const PLUGIN = 'modularize';
-const IDENTIFIER = `${PLUGIN}:`;
-const IDENTIFIER_COLOR = '\x1b[32m';
-const COLOR_RESET = '\x1b[0m';
-const FILE_REGEX = /\(.+\)/g;
+const {
+  PLUGIN,
+  IDENTIFIER_COLOR,
+  IDENTIFIER,
+  COLOR_RESET,
+  FILE_REGEX,
+} = require('./config');
 
 class Modularize {
   constructor(sls) {
@@ -67,10 +69,22 @@ class Modularize {
       resources: get(this.serverless, 'service.resources', {}),
     };
 
+    const customMerge = (key) => {
+      if (key.indexOf(':')) {
+        return (a, b) => a;
+      }
+    };
+
     const mergedValues = this.files
       .map(resolve)
       .concat(subset)
-      .reduce((a, b) => deepmerge(a, b), {});
+      .reduce(
+        (a, b) =>
+          deepmerge(a, b, {
+            customMerge,
+          }),
+        {},
+      );
 
     if (log) {
       this.log(JSON.stringify(mergedValues, null, 2));

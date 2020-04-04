@@ -121,6 +121,11 @@ modularize: {
 # Sample Project
 A simple example can be found [here][example], showing how two lambda resource definitions can be modularized into one project. 
 
+# Changelog
+
+**1.0.2**
+- Adding check for Fn:Get keys
+
 [link-download]: https://img.shields.io/npm/dt/serverless-plugin-modularize
 [link-version]: https://img.shields.io/npm/v/serverless-plugin-modularize.svg
 [link-license]: https://img.shields.io/npm/l/serverless-plugin-modularize.svg
