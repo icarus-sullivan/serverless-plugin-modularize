@@ -1,4 +1,16 @@
 
+custom:
+  write:
+    Effect: Allow
+    Action:
+      - 'kinesis:DescribeStream'
+      - 'kinesis:PutRecord'
+      - 'kinesis:PutRecords'
+    Resource:
+      'Fn::GetAtt':
+        - IncomingStream
+        - Arn
+
 functions:
   test:
     handler: src/fake.default

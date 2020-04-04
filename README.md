@@ -123,6 +123,9 @@ A simple example can be found [here][example], showing how two lambda resource d
 
 # Changelog
 
+**1.0.4**
+- Deduplicating non-mergeable array items
+
 **1.0.3**
 - Adding check for Fn:Get keys
 

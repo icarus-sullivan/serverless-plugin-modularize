@@ -69,22 +69,20 @@ class Modularize {
       resources: get(this.serverless, 'service.resources', {}),
     };
 
-    const customMerge = (key) => {
-      if (key.indexOf(':') > 0) {
-        return (a, b) => a;
-      }
-    };
+    const arrayMerge = (dest, src, options) => [
+      ...src,
+      // If the data is mergeable -- pass it through, if not check for uniqueness
+      ...dest.filter((v) => {
+        if (options.isMergeableObject(v)) return true;
 
-    const mergedValues = this.files
-      .map(resolve)
-      .concat(subset)
-      .reduce(
-        (a, b) =>
-          deepmerge(a, b, {
-            customMerge,
-          }),
-        {},
-      );
+        return src.indexOf(v) === -1;
+      }),
+    ];
+
+    const mergedValues = [subset, ...this.files.map(resolve)].reduce(
+      (a, b) => deepmerge(a, b, { arrayMerge }),
+      {},
+    );
 
     if (log) {
       this.log(JSON.stringify(mergedValues, null, 2));

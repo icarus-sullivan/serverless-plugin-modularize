@@ -36,6 +36,22 @@ Object {
 
 exports[`utils/fs loads yml file 1`] = `
 Object {
+  "custom": Object {
+    "write": Object {
+      "Action": Array [
+        "kinesis:DescribeStream",
+        "kinesis:PutRecord",
+        "kinesis:PutRecords",
+      ],
+      "Effect": "Allow",
+      "Resource": Object {
+        "Fn::GetAtt": Array [
+          "IncomingStream",
+          "Arn",
+        ],
+      },
+    },
+  },
   "functions": Object {
     "test": Object {
       "handler": "src/fake.default",
