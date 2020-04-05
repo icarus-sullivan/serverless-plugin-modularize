@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-modularize",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Modularize your serverless definitions",
   "main": "lib/index.js",
   "files": [
@@ -43,7 +43,6 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2",
     "glob": "^7.1.6",
     "js-yaml": "^3.13.1",
     "lodash.get": "^4.4.2"

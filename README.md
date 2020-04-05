@@ -123,6 +123,9 @@ A simple example can be found [here][example], showing how two lambda resource d
 
 # Changelog
 
+**1.0.5**
+- Removed external dependency that was causing merge duplication
+
 **1.0.4**
 - Deduplicating non-mergeable array items
 
