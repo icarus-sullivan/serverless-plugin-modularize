@@ -15,7 +15,9 @@ module.exports = (a, b) => ({
     ...get(b, 'functions', {}),
   },
   resources: {
-    ...get(a, 'resources', {}),
-    ...get(b, 'resources', {}),
+    Resources: {
+      ...get(a, 'resources.Resources', {}),
+      ...get(b, 'resources.Resources', {}),
+    },
   },
 });

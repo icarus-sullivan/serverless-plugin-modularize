@@ -2,3 +2,19 @@
 functions:
   hello:
     handler: src/hello/index.hello
+
+resources: 
+  Resources:
+      usersTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: usersTable
+          AttributeDefinitions:
+            - AttributeName: registration
+              AttributeType: S
+          KeySchema:
+            - AttributeName: registration
+              KeyType: HASH
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1

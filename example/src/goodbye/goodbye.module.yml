@@ -2,3 +2,19 @@
 functions:
   goodbye:
     handler: src/goodbye/index.goodbye
+
+resources: 
+  Resources:
+      carsTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+          TableName: carsTable
+          AttributeDefinitions:
+            - AttributeName: registration
+              AttributeType: S
+          KeySchema:
+            - AttributeName: registration
+              KeyType: HASH
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
