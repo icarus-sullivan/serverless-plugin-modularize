@@ -19,5 +19,9 @@ module.exports = (a, b) => ({
       ...get(a, 'resources.Resources', {}),
       ...get(b, 'resources.Resources', {}),
     },
+    Outputs: {
+      ...get(a, 'resources.Outputs', {}),
+      ...get(b, 'resources.Outputs', {}),
+    },
   },
 });

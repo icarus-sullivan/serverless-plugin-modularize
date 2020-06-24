@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-modularize",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Modularize your serverless definitions",
   "main": "lib/index.js",
   "files": [
