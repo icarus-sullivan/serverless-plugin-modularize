@@ -123,6 +123,9 @@ A simple example can be found [here][example], showing how two lambda resource d
 
 # Changelog
 
+**1.0.7**
+- Adding Outputs fix to resources merge
+
 **1.0.6**
 - Fixing merge issue regarding Resources, thanks to [LoZeno](https://github.com/LoZeno)
 
