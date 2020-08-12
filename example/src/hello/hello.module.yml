@@ -1,4 +1,8 @@
 
+provider:
+  environment:
+    HELLO_ENV_VARIABLE: 'hi'
+
 functions:
   hello:
     handler: src/hello/index.hello

@@ -20,7 +20,7 @@ const createModularize = (sls) => {
 describe('Modularize', () => {
   it('ignored when missing globs', () => {
     const serverless = createServerless();
-    const plugin = createModularize(serverless);
+    createModularize(serverless);
 
     expect(serverless).toMatchSnapshot();
   });

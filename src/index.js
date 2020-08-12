@@ -1,7 +1,7 @@
 const get = require('lodash.get');
 const glob = require('glob');
+const merge = require('ramda').mergeDeepLeft;
 const { resolve } = require('./utils/fs');
-const merge = require('./utils/merge');
 
 const {
   PLUGIN,

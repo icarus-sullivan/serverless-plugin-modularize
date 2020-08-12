@@ -21,7 +21,7 @@ const fileTests = [
 ];
 
 describe('utils/fs', () => {
-  fileTests.map(({ label, filename }) => {
+  fileTests.forEach(({ label, filename }) => {
     it(label, () => {
       expect(resolve(path.resolve(__dirname, filename))).toMatchSnapshot();
     });

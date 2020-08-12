@@ -38,17 +38,6 @@ custom:
 
 The plugin uses glob patterns to resolve matching modularized files. For a primer on glob usage, visit [here][glob]. If no glob is provided, the plugin will not merge anything. When matches are found, the result will be **dynamically** merged into the base `serverless.yml` definition as required.
 
-## Supported Mergeable Properties
-To avoid mutating the base serverless framework, only the following properties are supported when merging. Unfortunately to help in merging, please follow the `Expected Type(s)` from the table below to avoid collisions between arrays and object. 
-
-| Property | Expected Type |
-|-----|-----|
-| provider | Object |
-| plugins | String[] |
-| custom | Object `or` File Reference |
-| functions | Object |
-| resources | Object |
-
 ## Supported Module File Types
 - yaml
 - js
@@ -118,10 +107,25 @@ modularize: {
 }
 ```
 
+## Supported Mergeable Properties
+To avoid mutating the base serverless framework, only the following properties are supported when merging. Unfortunately to help in merging, please follow the `Expected Type(s)` from the table below to avoid collisions between arrays and object. 
+
+| Property | Expected Type |
+|-----|-----|
+| provider | Object |
+| plugins | String[] |
+| custom | Object `or` File Reference |
+| functions | Object |
+| resources | Object |
+
+
 # Sample Project
 A simple example can be found [here][example], showing how two lambda resource definitions can be modularized into one project. 
 
 # Changelog
+
+**1.0.8**
+- Using deep merge with Ramda instead of es6 syntax
 
 **1.0.7**
 - Adding Outputs fix to resources merge
