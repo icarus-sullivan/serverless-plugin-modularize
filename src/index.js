@@ -1,6 +1,6 @@
 const get = require('lodash.get');
 const glob = require('glob');
-const merge = require('ramda').mergeDeepLeft;
+const merge = require('ramda').mergeDeepWithKey;
 const { resolve } = require('./utils/fs');
 
 const {
@@ -17,7 +17,7 @@ class Modularize {
 
     this.hooks = {
       [`${PLUGIN}:info:info`]: this.generateInfo.bind(this),
-      [`${PLUGIN}:merged:merged`]: this.generateMerged.bind(this),
+      [`${PLUGIN}:merged:merged`]: this.printMerged.bind(this),
     };
 
     this.commands = {
@@ -60,7 +60,7 @@ class Modularize {
     }
   }
 
-  generateMerged(log = true) {
+  printMerged() {
     const subset = {
       plugins: get(this.serverless, 'service.plugins', []),
       custom: get(this.serverless, 'service.custom', {}),
@@ -69,13 +69,43 @@ class Modularize {
       resources: get(this.serverless, 'service.resources', {}),
     };
 
-    const mergedValues = [subset, ...this.files.map(resolve)].reduce(merge, {});
+    this.log(JSON.stringify(subset, null, 2));
+  }
 
-    if (log) {
-      this.log(JSON.stringify(mergedValues, null, 2));
-    }
+  mergeModules() {
+    const subset = {
+      plugins: get(this.serverless, 'service.plugins', []),
+      custom: get(this.serverless, 'service.custom', {}),
+      provider: get(this.serverless, 'service.provider', {}),
+      functions: get(this.serverless, 'service.functions', {}),
+      resources: get(this.serverless, 'service.resources', {}),
+    };
 
-    return mergedValues;
+    const reducer = (mergedLeftObj, rightObj) => {
+      const arrayHandler = (paramName, val1, val2) => {
+        if (val1 === undefined || val1 === null) {
+          return val2;
+        }
+
+        if (val2 === undefined || val2 === null) {
+          return val1;
+        }
+
+        if (!Array.isArray(val1) || !Array.isArray(val2)) {
+          return val2;
+        }
+
+        return val1.concat(val2);
+      };
+
+      return merge(arrayHandler, mergedLeftObj, rightObj);
+    };
+    const mergedValues = [subset, ...this.files.map(resolve)].reduce(
+      reducer,
+      {},
+    );
+
+    Object.assign(this.serverless.service, mergedValues);
   }
 
   processCustom() {
@@ -88,10 +118,6 @@ class Modularize {
         custom: resolve(filename),
       });
     }
-  }
-
-  mergeModules() {
-    Object.assign(this.serverless.service, this.generateMerged(false));
   }
 }
 
