@@ -1,4 +1,9 @@
 
+
+custom:
+  dedupe:
+    - eleven
+
 provider:
   environment:
     HELLO_ENV_VARIABLE: 'hi'
@@ -9,16 +14,25 @@ functions:
 
 resources: 
   Resources:
-      usersTable:
-        Type: AWS::DynamoDB::Table
-        Properties:
-          TableName: usersTable
-          AttributeDefinitions:
-            - AttributeName: registration
-              AttributeType: S
-          KeySchema:
-            - AttributeName: registration
-              KeyType: HASH
-          ProvisionedThroughput:
-            ReadCapacityUnits: 1
-            WriteCapacityUnits: 1
+    lambdaAccessPolicy:
+      Properties:
+        PolicyDocument:
+          Statement:
+            - Effect: "Allow"
+              Action: "lambda:invokeFunction"
+              Resource:
+                Fn::GetAtt: [ HelloFunction, Arn ]
+   
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: usersTable
+        AttributeDefinitions:
+          - AttributeName: registration
+            AttributeType: S
+        KeySchema:
+          - AttributeName: registration
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

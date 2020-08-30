@@ -2,7 +2,9 @@
   "name": "modular-example",
   "version": "1.0.0",
   "description": "Shows how to use the modularize plugin for serverless",
-  "scripts": {},
+  "scripts": {
+    "sls": "npx serverless"
+  },
   "devDependencies": {
     "serverless": "^1.60.4",
     "serverless-plugin-modularize": "../"
