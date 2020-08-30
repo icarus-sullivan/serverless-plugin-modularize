@@ -124,6 +124,10 @@ A simple example can be found [here][example], showing how two lambda resource d
 
 # Changelog
 
+**1.0.9**
+- Array de-duplication
+- Moved merge to run once at beginning only
+
 **1.0.8**
 - Using deep merge with Ramda instead of es6 syntax
 

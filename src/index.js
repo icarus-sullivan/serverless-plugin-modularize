@@ -1,7 +1,8 @@
 const get = require('lodash.get');
 const glob = require('glob');
-const merge = require('ramda').mergeDeepLeft;
 const { resolve } = require('./utils/fs');
+
+const mergeTest = require('./utils/merge');
 
 const {
   PLUGIN,
@@ -16,8 +17,8 @@ class Modularize {
     this.serverless = sls;
 
     this.hooks = {
-      [`${PLUGIN}:info:info`]: this.generateInfo.bind(this),
-      [`${PLUGIN}:merged:merged`]: this.generateMerged.bind(this),
+      [`${PLUGIN}:info:info`]: this.printInfo.bind(this),
+      [`${PLUGIN}:merged:merged`]: this.printMerged.bind(this),
     };
 
     this.commands = {
@@ -54,28 +55,37 @@ class Modularize {
     );
   }
 
-  generateInfo() {
-    for (const file of this.files) {
-      this.log(file, '\n', JSON.stringify(resolve(file), null, 2), '\n');
-    }
-  }
-
-  generateMerged(log = true) {
-    const subset = {
+  getSubset() {
+    return {
       plugins: get(this.serverless, 'service.plugins', []),
       custom: get(this.serverless, 'service.custom', {}),
       provider: get(this.serverless, 'service.provider', {}),
       functions: get(this.serverless, 'service.functions', {}),
       resources: get(this.serverless, 'service.resources', {}),
     };
+  }
 
-    const mergedValues = [subset, ...this.files.map(resolve)].reduce(merge, {});
-
-    if (log) {
-      this.log(JSON.stringify(mergedValues, null, 2));
+  printInfo() {
+    for (const file of this.files) {
+      this.log(file, '\n', JSON.stringify(resolve(file), null, 2), '\n');
     }
+  }
 
-    return mergedValues;
+  printMerged() {
+    const subset = this.getSubset();
+
+    this.log(JSON.stringify(subset, null, 2));
+  }
+
+  mergeModules() {
+    const subset = this.getSubset();
+
+    const mergedValues = [subset, ...this.files.map(resolve)].reduce(
+      mergeTest,
+      {},
+    );
+
+    Object.assign(this.serverless.service, mergedValues);
   }
 
   processCustom() {
@@ -88,10 +98,6 @@ class Modularize {
         custom: resolve(filename),
       });
     }
-  }
-
-  mergeModules() {
-    Object.assign(this.serverless.service, this.generateMerged(false));
   }
 }
 
