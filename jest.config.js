@@ -1,4 +1,3 @@
-
 module.exports = {
   rootDir: __dirname,
   moduleFileExtensions: ['js'],
@@ -10,12 +9,4 @@ module.exports = {
   timers: 'fake',
   collectCoverage: true,
   coverageDirectory: '<rootDir>/.coverage/jest',
-  coverageThreshold: {
-    global: {
-      statements: 90,
-      branches: 90,
-      functions: 90,
-      lines: 90,
-    },
-  },
 };
