@@ -1,4 +1,5 @@
 import Modularize from '../src/index';
+import fs from 'fs';
 
 const createServerless = ({ custom } = {}) => ({
   service: {
@@ -9,6 +10,9 @@ const createServerless = ({ custom } = {}) => ({
   cli: {
     consoleLog: jest.fn(),
   },
+  utils: {
+    readFileSync: fs.readFileSync 
+  }
 });
 
 const createModularize = (sls) => {
