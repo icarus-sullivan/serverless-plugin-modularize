@@ -14,6 +14,9 @@ Object {
     "provider": Object {},
     "resources": Object {},
   },
+  "utils": Object {
+    "readFileSync": [Function],
+  },
 }
 `;
 
@@ -36,6 +39,9 @@ Object {
       },
     },
     "resources": Object {},
+  },
+  "utils": Object {
+    "readFileSync": [Function],
   },
 }
 `;

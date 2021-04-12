@@ -15,6 +15,13 @@ const {
 class Modularize {
   constructor(sls) {
     this.serverless = sls;
+    this.resolve = (filename) => {
+      try {
+        return resolve(filename);
+      } catch (e) {
+        return this.serverless.utils.readFileSync(filename);
+      }
+    }
 
     this.hooks = {
       [`${PLUGIN}:info:info`]: this.printInfo.bind(this),
@@ -67,7 +74,7 @@ class Modularize {
 
   printInfo() {
     for (const file of this.files) {
-      this.log(file, '\n', JSON.stringify(resolve(file), null, 2), '\n');
+      this.log(file, '\n', JSON.stringify(this.resolve(file), null, 2), '\n');
     }
   }
 
@@ -80,7 +87,7 @@ class Modularize {
   mergeModules() {
     const subset = this.getSubset();
 
-    const mergedValues = [subset, ...this.files.map(resolve)].reduce(
+    const mergedValues = [subset, ...this.files.map(this.resolve)].reduce(
       mergeTest,
       {},
     );
@@ -95,7 +102,7 @@ class Modularize {
       const filename = match[0].slice(1, -1);
 
       Object.assign(this.serverless.service, {
-        custom: resolve(filename),
+        custom: this.resolve(filename),
       });
     }
   }
