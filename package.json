@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-modularize",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Modularize your serverless definitions",
   "main": "lib/index.js",
   "files": [
@@ -41,13 +41,14 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^24.9.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "serverless": "^3.22.0"
   },
   "dependencies": {
     "@teleology/fp": "^2.0.3",
     "glob": "^7.1.6",
     "js-yaml": "^3.13.1",
-    "lodash.get": "^4.4.2",
-    "lodash.merge": "^4.6.2"
+    "lodash": "^4.17.21",
+    "lodash.get": "^4.4.2"
   }
 }

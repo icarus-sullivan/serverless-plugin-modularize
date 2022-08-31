@@ -10,19 +10,11 @@ provider:
 
 functions:
   hello:
+    name: 'hello-test'
     handler: src/hello/index.hello
 
 resources: 
-  Resources:
-    lambdaAccessPolicy:
-      Properties:
-        PolicyDocument:
-          Statement:
-            - Effect: "Allow"
-              Action: "lambda:invokeFunction"
-              Resource:
-                Fn::GetAtt: [ HelloFunction, Arn ]
-   
+  Resources:   
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:

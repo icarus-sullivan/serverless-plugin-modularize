@@ -5,19 +5,11 @@ custom:
 
 functions:
   goodbye:
+    name: 'goodbye-test'
     handler: src/goodbye/index.goodbye
 
 resources: 
   Resources:
-    lambdaAccessPolicy:
-      Properties:
-        PolicyDocument:
-          Statement:
-            - Effect: "Allow"
-              Action: "lambda:invokeFunction"
-              Resource:
-                Fn::GetAtt: [ GoodbyeFunction, Arn ]
-
     carsTable:
       Type: AWS::DynamoDB::Table
       Properties:
