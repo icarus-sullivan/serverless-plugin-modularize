@@ -26,7 +26,6 @@ class Modularize {
     }
 
     this.files = glob.sync(options.glob);
-    // this.mergeModules();
 
     this.resolve = (filename) => {
       try {
